@@ -36,4 +36,42 @@ const NEKITBR_N8N_BASE_URL = "https://nekitbr.app.n8n.cloud/webhook";
 
 export const N8NClient = {
 
+    /**
+     * @returns {Promise<EncryptedResponse>}
+     */
+    async fetchEncryptedUsers() {
+        const response = await fetch(`${EVRLY_N8N_BASE_URL}/data-5dYbrVSlMVJxfmco`);
+        return response.json();
+    },
+
+    /**
+     * @param {number} start
+     * @param {number} limit
+     * @returns {Promise<UserEntity[]>}
+     */
+    async fetchUsersPaginated(start, limit) {
+        const params = new URLSearchParams({ start, limit });
+
+        return await fetch(`${NEKITBR_N8N_BASE_URL}/users?${params.toString()}`)
+            .then(response => response.json());
+    },
+
+    /**
+     * @param {UserData | UserData[]} data
+     * @returns {Promise<UserEntity[]>}
+     */
+    async saveUsers(data) {
+        await fetch(`${NEKITBR_N8N_BASE_URL}/users/save`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(Array.isArray(data) ? data : [data]),
+        });
+    },
+
+    async truncateUsersTable() {
+        await fetch(`${NEKITBR_N8N_BASE_URL}/users/truncate-table`, {
+            method: 'DELETE',
+        })
+    }
+
 };
