@@ -31,6 +31,12 @@
  * @augments UserData
  */
 
+/**
+ * @typedef {Object} GetPaginatedUsersResponse
+ * @property {UserEntity[]} data
+ * @property {number} totalElements
+ */
+
 const EVRLY_N8N_BASE_URL = "https://n8n-apps.nlabshealth.com/webhook";
 const NEKITBR_N8N_BASE_URL = "https://nekitbr.app.n8n.cloud/webhook";
 
@@ -47,7 +53,7 @@ export const N8NClient = {
     /**
      * @param {number} start
      * @param {number} limit
-     * @returns {Promise<UserEntity[]>}
+     * @returns {Promise<GetPaginatedUsersResponse>}
      */
     async fetchUsersPaginated(start, limit) {
         const params = new URLSearchParams({ start, limit });
