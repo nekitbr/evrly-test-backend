@@ -58,8 +58,10 @@ export const N8NClient = {
     async fetchUsersPaginated(start, limit) {
         const params = new URLSearchParams({ start, limit });
 
-        return await fetch(`${NEKITBR_N8N_BASE_URL}/users?${params.toString()}`)
-            .then(response => response.json());
+        const response = await fetch(`${NEKITBR_N8N_BASE_URL}/users?${params.toString()}`);
+        const json = await response.json();
+
+        return json[0];
     },
 
     /**
