@@ -37,8 +37,8 @@
  * @property {number} totalElements
  */
 
-const EVRLY_N8N_BASE_URL = "https://n8n-apps.nlabshealth.com/webhook";
-const NEKITBR_N8N_BASE_URL = "https://nekitbr.app.n8n.cloud/webhook";
+const EVRLY_N8N_BASE_URL = process.env.EVRLY_N8N_BASE_URL;
+const NEKITBR_N8N_BASE_URL = process.env.NEKITBR_N8N_BASE_URL;
 
 export const N8NClient = {
 
