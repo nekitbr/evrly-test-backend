@@ -1,4 +1,4 @@
-import { N8NClient } from "../clients/N8nClient.js";
+import { N8NClient } from "../clients/N8NClient.js";
 import { decryptPayload } from "./EncryptionService.js";
 
 export const UserService = {
