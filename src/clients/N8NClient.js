@@ -61,7 +61,10 @@ export const N8NClient = {
         const response = await fetch(`${NEKITBR_N8N_BASE_URL}/users?${params.toString()}`);
         const json = await response.json();
 
-        return json[0];
+        return {
+            data: json[0].data ?? [],
+            totalElements: json[0].totalElements ?? json[0].count // n8n shenanigans - will return count if data is empty, otherwise totalElements
+        };
     },
 
     /**
