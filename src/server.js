@@ -15,10 +15,14 @@ fastify.setErrorHandler((error, request, reply) => {
 });
 
 fastify.register(fastifyCors, {
-    origin: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    origin: [
+        'https://evrly-test-frontend.vercel.app',
+        /^http:\/\/localhost(:\d+)?$/, // http://localhost or http://localhost:ANY_PORT
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 });
+
 fastify.register(UserController);
 
 fastify.listen({ port: 3000 }, (err, address) => {
